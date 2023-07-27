@@ -1,8 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:masud_project/MyPostPageUI.dart';
-import 'package:masud_project/ProductUI%20Design.dart';
+import 'package:masud_project/ViewPOST/POSTUI.dart';
+import 'package:masud_project/ViewPOST/ProductUI%20Design.dart';
 import 'package:masud_project/SetttingsPageUIDesign.dart';
+import 'package:masud_project/sggsefg.dart';
 
 class DropDownButtonType extends StatefulWidget {
   @override
@@ -61,6 +63,13 @@ class _DropDownButtonTypeState extends State<DropDownButtonType> {
               title: Text('My posts'),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => MyPostUIDesign()));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.post_add),
+              title: Text('Multi image picker'),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => PostUiDesign()));
               },
             ),
             ListTile(
@@ -142,12 +151,12 @@ class _DropDownButtonTypeState extends State<DropDownButtonType> {
               ),
             ),
             Expanded(
-                child: Container(
+                child: SizedBox(
                   height: height*0.3,
                   child: ListView.builder(
                     itemCount: 4,
                     itemBuilder: (BuildContext context, int index) {
-                      return ProductUIDesign();
+                      return PostUiDesign();
                     },
 
                   ),
