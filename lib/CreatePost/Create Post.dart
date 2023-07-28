@@ -1,7 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:masud_project/CreatePost/CreatePostForm.dart';
 
-class CreatePostUI extends StatelessWidget {
+class CreatePostUI extends StatefulWidget {
   const CreatePostUI({Key? key}) : super(key: key);
+
+  @override
+  State<CreatePostUI> createState() => _CreatePostUIState();
+}
+
+class _CreatePostUIState extends State<CreatePostUI> {
+  String selectedType = "Electronics";
+  List<String> dropdownOptions = [
+    "Electronics",
+    "Fashion",
+    "Home & Garden",
+    "Books & Literature",
+    "Health & Fitness",
+    "Sports & Outdoors",
+    "Food & Cooking",
+    "Travel & Adventure",
+    "Movies & Entertainment",
+    "Art & Design",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -9,14 +29,15 @@ class CreatePostUI extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Post you House"),
+        title: const Text("Post your House"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
+            ///Welcome name
+            const Row(
               children: [
                 Text("Welcome",style: TextStyle(
                   fontSize: 18
@@ -27,33 +48,41 @@ class CreatePostUI extends StatelessWidget {
                 ),)
               ],
             ),
-            Text("Choose an option below to post",style: TextStyle(
+            Text("Choose your category",style: TextStyle(
               color: Colors.grey.shade700,
               fontSize: 15
             ),),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  height: height*0.1,
-                  width: width*0.3,
-                  color: Colors.red,
+
+            ///Category
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    DropdownButton<String>(
+                      icon: const Icon(Icons.arrow_drop_down),
+                      value: selectedType,
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          selectedType = newValue!;
+                        });
+                      },
+                      items: dropdownOptions.map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                    ElevatedButton(onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => CreatePostFormPage()));
+                    },
+                        child: Text("Next"))
+                  ],
                 ),
-                Container(
-                  height: height*0.1,
-                  width: width*0.3,
-                  decoration: BoxDecoration(
-                      color: Colors.grey.shade400,
-                      borderRadius: BorderRadius.circular(10)
-                  ),
-                ),
-                Container(
-                  height: height*0.1,
-                  width: width*0.3,
-                  color: Colors.red,
-                ),
-              ],
-            )
+              ),
+            ),
           ],
         ),
       ),

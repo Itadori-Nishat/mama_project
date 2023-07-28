@@ -19,7 +19,7 @@ class ProductUIDesign extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Details",
+        title: const Text("Details",
         style: TextStyle(
           fontWeight: FontWeight.bold
         ),
@@ -33,11 +33,11 @@ class ProductUIDesign extends StatelessWidget {
             children: [
               ///Profile picture and details
                Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.0),
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
+                    const Row(
                       children: [
                         CircleAvatar(
                           radius: 22,
@@ -79,7 +79,7 @@ class ProductUIDesign extends StatelessWidget {
                                   fontSize: 16.0
                               );
                             },
-                            icon: Icon(Icons.share)),
+                            icon: const Icon(Icons.share)),
                         IconButton(
                             onPressed: (){
                               Fluttertoast.showToast(
@@ -90,7 +90,7 @@ class ProductUIDesign extends StatelessWidget {
                                   fontSize: 16.0
                               );
                             },
-                            icon: Icon(Icons.bookmark_add_outlined)),
+                            icon: const Icon(Icons.bookmark_add_outlined)),
                       ],
                     ),
                   ],
@@ -163,6 +163,9 @@ class ProductUIDesign extends StatelessWidget {
                   }, child: const Text("Contact"))
                 ],
               ),
+
+              ///Divider after price
+              const Expanded(child: Divider()),
 
               ///Description
               Padding(
