@@ -12,7 +12,7 @@ class _CreatePostUIState extends State<CreatePostUI> {
   String selectedType = "Electronics";
   List<String> dropdownOptions = [
     "Electronics",
-    "Fashion",
+    "House",
     "Home & Garden",
     "Books & Literature",
     "Health & Fitness",

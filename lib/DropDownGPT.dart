@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:masud_project/MyPostPageUI.dart';
-import 'package:masud_project/ViewPOST/POSTUI.dart';
+import 'package:masud_project/CreatePost/MyPostPageUI.dart';
+import 'package:masud_project/ViewPOST/FirstLookPOSTUI.dart';
 import 'package:masud_project/ViewPOST/ProductUI%20Design.dart';
 import 'package:masud_project/SetttingsPageUIDesign.dart';
 import 'package:masud_project/sggsefg.dart';

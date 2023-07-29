@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:masud_project/CreatePost/CreatePostPREVIEW.dart';
+import 'package:masud_project/CreatePost/Select%20Location.dart';
 
 class CreatePostFormPage extends StatelessWidget {
   CreatePostFormPage({Key? key}) : super(key: key);
 
-  TextEditingController discriptionController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _typeController = new TextEditingController();
+  final TextEditingController _titleController = new TextEditingController();
+  TextEditingController _discriptionController = new TextEditingController();
+  TextEditingController _priceController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -18,46 +23,64 @@ class CreatePostFormPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                height: height*0.3,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20)
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: height*0.3,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20)
+                  ),
+                  child: Center(
+                    child: Image.network("https://cdn-media-1.freecodecamp.org/images/1*2H0HPHmFNs2t78Zog8kd9w.png",
+                      fit: BoxFit.contain,),
+                  ),
                 ),
-                child: Image.network("https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0"
-                    ".3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1175&q=80",
-                  fit: BoxFit.contain,),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Center(
-                  child: ElevatedButton(onPressed: (){
-                    Fluttertoast.showToast(
-                      msg: "Add photo will be here",
-                      backgroundColor: Colors.teal
-                    );
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
+                    child: ElevatedButton(onPressed: (){
+                      Fluttertoast.showToast(
+                        msg: "Add photo will be here",
+                        backgroundColor: Colors.teal
+                      );
+                    },
+                        child: Text("Add your picture")),
+                  ),
+                ),
+                TextFormField(
+                  textCapitalization: TextCapitalization.sentences,
+                  controller: _typeController,
+                  validator: (val) {
+                    if (val == null || val!.isEmpty) {
+                      return 'Select type';
+                    }
+                    return null;
                   },
-                      child: Text("Add your picture")),
+                  decoration: InputDecoration(
+                      labelText: "Select Type"
+                  ),
                 ),
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                    labelText: "Select Type"
+                TextFormField(
+                  textCapitalization: TextCapitalization.sentences,
+                  controller: _titleController,
+                  validator: (val) {
+                    if (val == null || val!.isEmpty) {
+                      return 'Please give title';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                      labelText: "Title"
+                  ),
                 ),
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                    labelText: "Title"
-                ),
-              ),
-              Form(
-                key: _formKey,
-                child: TextFormField(
-                  controller: discriptionController,
+                TextFormField(
+                  textCapitalization: TextCapitalization.sentences,
+                  controller: _discriptionController,
                     validator: (value) {
-                      if (value!.length < 20) {
+                      if (value!.length < 10) {
                         return 'Please enter at least 20 characters';
                       }
                       return null;
@@ -66,22 +89,41 @@ class CreatePostFormPage extends StatelessWidget {
                       labelText: "Add description"
                   ),
                 ),
-              ),
-              TextFormField(
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelText: "Price (Tk)"
+                TextFormField(
+                  controller: _priceController,
+                  validator: (val) {
+                    if(val == null || val!.isEmpty) {
+                      return "Enter price";
+                    }
+                    return null;
+                  },
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    labelText: "Price (Tk)"
+                  ),
                 ),
-              ),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15.0),
-                  child: ElevatedButton(
-                      onPressed: () {},
-                      child: Text("Submit")),
-                ),
-              )
-            ],
+
+                ///Location select
+
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 15.0),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          if(_formKey.currentState!.validate()) {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => CreatePostPreviewPage(
+                              type: _typeController.text,
+                              title: _titleController.text,
+                              description: _discriptionController.text,
+                              price: _priceController.text,
+                            )));
+                          }
+                        },
+                        child: Text("Submit")),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
