@@ -1,10 +1,6 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:masud_project/CreatePost/MyPostPageUI.dart';
 import 'package:masud_project/ViewPOST/FirstLookPOSTUI.dart';
-import 'package:masud_project/ViewPOST/ProductUI%20Design.dart';
-import 'package:masud_project/SetttingsPageUIDesign.dart';
-import 'package:masud_project/sggsefg.dart';
+import 'CreatePost/1. Select Location.dart';
 
 class DropDownButtonType extends StatefulWidget {
   @override
@@ -39,48 +35,12 @@ class _DropDownButtonTypeState extends State<DropDownButtonType> {
       appBar: AppBar(
         title: const Text('Home Page'),
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            UserAccountsDrawerHeader(
-              currentAccountPicture: CircleAvatar(
-                radius: 25,
-                backgroundImage: NetworkImage("https://images.unsplash.com/photo-1618641986557-1ecd230959aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"),
-              ),
-                accountName: Text("Andrew Tate"),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
 
-                accountEmail: Text("+88 01817-171717")),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
-              onTap: () {
-                // Handle drawer item tap here
-                Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsUIDesign()));
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.post_add),
-              title: Text('My posts'),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MyPostUIDesign()));
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.post_add),
-              title: Text('Multi image picker'),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => PostUiDesign()));
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.post_add),
-              title: Text('Log out'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
+          Navigator.push(context, MaterialPageRoute(builder: (context) => CreatePostLocationSelect()));
+        },
+        child: Icon(Icons.add),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

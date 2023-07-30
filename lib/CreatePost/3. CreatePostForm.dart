@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:masud_project/CreatePost/ProductPREVIEWpage.dart';
+import 'package:masud_project/CreatePost/4. ProductPREVIEWpage.dart';
 
 class CreatePostFormPage extends StatefulWidget {
   CreatePostFormPage({Key? key}) : super(key: key);
