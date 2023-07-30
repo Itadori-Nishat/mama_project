@@ -8,15 +8,15 @@ import 'package:url_launcher/url_launcher.dart';
 class ProductUIDesign1 extends StatelessWidget {
   final String? userName,location,type,title,price,contact,description;
   final File? imageFile;
-  ProductUIDesign1({Key? key,this.userName, this.location,this.type,this.title,this.description, this.price,this.contact, this.imageFile}) : super(key: key);
-  //
-  // final List<String> images = [
-  //   'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1175&q=80', // Replace with your image URLs
-  //   'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
-  //   'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
-  //   'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
-  //
-  // ];
+  ProductUIDesign1({Key? key,
+    this.userName,
+    this.location,
+    this.type,
+    this.title,
+    this.description,
+    this.price,
+    this.contact,
+    this.imageFile}) : super(key: key);
 
   void _makePhoneCall(number) async {
     final phoneNumber = 'tel: ${number.toString()}'; // Replace this with the phone number you want to call
@@ -32,6 +32,7 @@ class ProductUIDesign1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Preview",
@@ -176,22 +177,35 @@ class ProductUIDesign1 extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text("Tk:", style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold
                             ),),
                             const SizedBox(width: 5,),
-                            Text("${price.toString()}",style: const TextStyle(
-                                fontSize: 18
-                            ),)
+                            SizedBox(
+                              width: width*0.5,
+                              child: Text("${price.toString()}",style: const TextStyle(
+                                  fontSize: 18
+                              ),
+                              overflow: TextOverflow.fade,
+                              ),
+                            )
                           ],
                         ),
                       ),
                     ),
-                    ElevatedButton(onPressed: () {
-                      _makePhoneCall(contact);
-                    }, child: const Text("Call"))
+                    Card(
+                      child: GestureDetector(onTap: () {
+                        _makePhoneCall(contact);
+                      }, child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
+                        child: const Text("Call", style: TextStyle(
+                          fontSize: 18
+                        ),),
+                      )),
+                    )
                   ],
                 ),
 
@@ -203,6 +217,7 @@ class ProductUIDesign1 extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Type:", style: TextStyle(
                           color: Colors.grey.shade600,
@@ -210,9 +225,14 @@ class ProductUIDesign1 extends StatelessWidget {
                           fontWeight: FontWeight.bold
                       ),),
                       const SizedBox(width: 30,),
-                      Text("${type.toString()}",style: const TextStyle(
-                          fontSize: 17
-                      ),)
+                      SizedBox(
+                        width: width*0.6,
+                        child: Text("${type.toString()}",style: const TextStyle(
+                            fontSize: 17
+                        ),
+                        overflow: TextOverflow.fade,
+                        ),
+                      )
                     ],
                   ),
                 ),

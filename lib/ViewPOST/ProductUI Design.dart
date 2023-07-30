@@ -210,7 +210,7 @@ class ProductUIDesign extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height: 100,
+                        width: width*0.4,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(5),
                           child: Image.network("https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&i"
@@ -226,7 +226,7 @@ class ProductUIDesign extends StatelessWidget {
                             ///Title
                             SizedBox(
                               width: width*0.5,
-                              child: const Text("Full build up House for sell in Dhaka",style: TextStyle(
+                              child: const Text("Full build House for sell in Dhaka",style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16
                               ),overflow: TextOverflow.ellipsis,),
@@ -234,25 +234,29 @@ class ProductUIDesign extends StatelessWidget {
 
                             ///Location
                             SizedBox(
-                              width: width*0.45,
+                              width: width*0.4,
                               child: const Padding(
                                 padding: EdgeInsets.symmetric(vertical: 8.0),
-                                child: Text("Mirpur 12,Dhaka",overflow: TextOverflow.ellipsis,),
+                                child: Text("Miprpur 12,Dhaka",overflow: TextOverflow.ellipsis,),
                               ),
                             ),
                             ///Price
-                            const Row(
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Tk:", style: TextStyle(
+                                const Text("Tk:", style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                   color: Colors.teal
                                 ),),
-                                SizedBox(width: 5,),
-                                Text("53,89,500",style: TextStyle(
-                                    fontSize: 15,
-                                  color: Colors.teal
-                                ),)
+                                const SizedBox(width: 5,),
+                                SizedBox(
+                                  width: width*0.4,
+                                  child: const Text("53,89,500",style: TextStyle(
+                                      fontSize: 15,
+                                    color: Colors.teal
+                                  ),),
+                                )
                               ],
                             ),
                           ],
@@ -268,7 +272,7 @@ class ProductUIDesign extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height: 100,
+                        width: width*0.4,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(5),
                           child: Image.network("https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?ixlib=rb-4.0."
@@ -284,7 +288,7 @@ class ProductUIDesign extends StatelessWidget {
                             ///Title
                             SizedBox(
                               width: width*0.5,
-                              child: const Text("New house for sale 12 acore in Feni",style: TextStyle(
+                              child: const Text("Full build House for sell in Dhaka",style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16
                               ),overflow: TextOverflow.ellipsis,),
@@ -292,25 +296,29 @@ class ProductUIDesign extends StatelessWidget {
 
                             ///Location
                             SizedBox(
-                              width: width*0.45,
+                              width: width*0.4,
                               child: const Padding(
                                 padding: EdgeInsets.symmetric(vertical: 8.0),
-                                child: Text("S.S.K Road, Feni",overflow: TextOverflow.ellipsis,),
+                                child: Text("Dhanmondi,Dhaka",overflow: TextOverflow.ellipsis,),
                               ),
                             ),
                             ///Price
-                            const Row(
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Tk:", style: TextStyle(
+                                const Text("Tk:", style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.teal
                                 ),),
-                                SizedBox(width: 5,),
-                                Text("45,89,500",style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.teal
-                                ),)
+                                const SizedBox(width: 5,),
+                                SizedBox(
+                                  width: width*0.4,
+                                  child: const Text("65,89,500",style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.teal
+                                  ),),
+                                )
                               ],
                             ),
                           ],
@@ -319,65 +327,6 @@ class ProductUIDesign extends StatelessWidget {
                     ],
                   ),
                 ),
-                ///Add posts 3
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 100,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5),
-                          child: Image.network("https://plus.unsplash.com/premium_photo-1661915661139-5b6a4e4a6fcc?ixlib="
-                              "rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1567&q=80"),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            ///Title
-                            SizedBox(
-                              width: width*0.5,
-                              child: const Text("Duplex house for rent",style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16
-                              ),overflow: TextOverflow.ellipsis,),
-                            ),
-
-                            ///Location
-                            SizedBox(
-                              width: width*0.45,
-                              child: const Padding(
-                                padding: EdgeInsets.symmetric(vertical: 8.0),
-                                child: Text("S.S.K Road, Feni",overflow: TextOverflow.ellipsis,),
-                              ),
-                            ),
-                            ///Price
-                            const Row(
-                              children: [
-                                Text("Tk:", style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.teal
-                                ),),
-                                SizedBox(width: 5,),
-                                Text("1,50,500",style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.teal
-                                ),)
-                              ],
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-
 
                 const SizedBox(height: 20,)
 
