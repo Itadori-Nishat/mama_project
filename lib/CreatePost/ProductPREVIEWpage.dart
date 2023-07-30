@@ -1,0 +1,246 @@
+import 'dart:io';
+
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+class ProductUIDesign1 extends StatelessWidget {
+  final String? userName,location,type,title,price,contact,description;
+  final File? imageFile;
+  ProductUIDesign1({Key? key,this.userName, this.location,this.type,this.title,this.description, this.price,this.contact, this.imageFile}) : super(key: key);
+  //
+  // final List<String> images = [
+  //   'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1175&q=80', // Replace with your image URLs
+  //   'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+  //   'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+  //   'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+  //
+  // ];
+
+  void _makePhoneCall(number) async {
+    final phoneNumber = 'tel: ${number.toString()}'; // Replace this with the phone number you want to call
+    if (await canLaunch(phoneNumber)) {
+      await launch(phoneNumber);
+    } else {
+      throw 'Could not launch $phoneNumber';
+
+    }
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Preview",
+          style: TextStyle(
+              fontWeight: FontWeight.bold
+          ),
+        ),
+        actions: [
+          IconButton(onPressed: () {
+            Fluttertoast.showToast(
+                backgroundColor: Colors.teal,
+                msg: "Post will be shared");
+          },
+              icon: const Icon(Icons.check))
+        ],
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // ///Profile picture and details
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(vertical: 10.0),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       Row(
+                //         children: [
+                //           CircleAvatar(
+                //             radius: 22,
+                //             backgroundImage: NetworkImage("https://images.unsplash.com/photo-1618641986557-1ecd230959aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"),
+                //           ),
+                //           Padding(
+                //             padding: EdgeInsets.symmetric(horizontal: 8.0),
+                //             child: Column(
+                //               crossAxisAlignment: CrossAxisAlignment.start,
+                //               children: [
+                //                 Text("${userName.toString()}", style: TextStyle(fontSize: 17,
+                //                     fontWeight: FontWeight.bold
+                //                 ),),
+                //                 Text("${location.toString()}"),
+                //                 Row(
+                //                   children: [
+                //                     Text("12:18 am"),
+                //                     Padding(
+                //                       padding: EdgeInsets.symmetric(horizontal: 5.0),
+                //                       child: Text("•"),
+                //                     ),
+                //                     Text("July 21, 2023"),
+                //                   ],
+                //                 )
+                //               ],
+                //             ),
+                //           )
+                //         ],
+                //       ),
+                //       Row(
+                //         children: [
+                //           IconButton(
+                //               onPressed: (){
+                //                 Fluttertoast.showToast(
+                //                     msg: "Shared",
+                //                     toastLength: Toast.LENGTH_SHORT,
+                //                     backgroundColor: Colors.teal,
+                //                     textColor: Colors.white,
+                //                     fontSize: 16.0
+                //                 );
+                //               },
+                //               icon: const Icon(Icons.share)),
+                //           IconButton(
+                //               onPressed: (){
+                //                 Fluttertoast.showToast(
+                //                     msg: "Bookmarked",
+                //                     toastLength: Toast.LENGTH_SHORT,
+                //                     backgroundColor: Colors.teal,
+                //                     textColor: Colors.white,
+                //                     fontSize: 16.0
+                //                 );
+                //               },
+                //               icon: const Icon(Icons.bookmark_add_outlined)),
+                //         ],
+                //       ),
+                //     ],
+                //   ),
+                // ),
+
+                ///Room picture
+                // CarouselSlider(
+                //   options: CarouselOptions(
+                //     enableInfiniteScroll: false,
+                //     viewportFraction: 1,
+                //   ),
+                //   items: images.map((imageURL) {
+                //     return Builder(
+                //       builder: (BuildContext context) {
+                //         return Container(
+                //           width: MediaQuery.of(context).size.width,
+                //           margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                //           decoration: const BoxDecoration(
+                //             color: Colors.grey,
+                //           ),
+                //           child: Image.network(
+                //             imageURL,
+                //             fit: BoxFit.contain,
+                //           ),
+                //         );
+                //       },
+                //     );
+                //   }).toList(),
+                // ),
+                if (imageFile != null)
+                  Container(
+                    height: height*0.3,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20)
+                    ),
+                    child: Center(
+                      child: Image.file(
+                        imageFile!,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ),
+
+                ///Title
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Text("${title.toString()}",style: const TextStyle(
+                      fontSize: 19,
+                      fontWeight: FontWeight.bold
+                  ),),
+                ),
+
+                ///Contact and price
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            const Text("Tk:", style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold
+                            ),),
+                            const SizedBox(width: 5,),
+                            Text("${price.toString()}",style: const TextStyle(
+                                fontSize: 18
+                            ),)
+                          ],
+                        ),
+                      ),
+                    ),
+                    ElevatedButton(onPressed: () {
+                      _makePhoneCall(contact);
+                    }, child: const Text("Call"))
+                  ],
+                ),
+
+                ///Divider after price
+                const Divider(),
+
+
+                ///Type
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Row(
+                    children: [
+                      Text("Type:", style: TextStyle(
+                          color: Colors.grey.shade600,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold
+                      ),),
+                      const SizedBox(width: 30,),
+                      Text("${type.toString()}",style: const TextStyle(
+                          fontSize: 17
+                      ),)
+                    ],
+                  ),
+                ),
+
+                ///Description
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Description:",style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.grey.shade600,
+                        fontWeight: FontWeight.bold
+                    ),),
+                    Text("${description.toString()}",
+                      style: const TextStyle(
+                        fontSize: 17,
+                      ),
+                    ),
+                  ],
+                ),
+                
+                const SizedBox(height: 20,)
+
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

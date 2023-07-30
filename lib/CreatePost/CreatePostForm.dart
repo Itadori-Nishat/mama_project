@@ -1,19 +1,41 @@
+import 'dart:io';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:masud_project/CreatePost/CreatePostPREVIEW.dart';
-import 'package:masud_project/CreatePost/Select%20Location.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:masud_project/CreatePost/ProductPREVIEWpage.dart';
 
-class CreatePostFormPage extends StatelessWidget {
+class CreatePostFormPage extends StatefulWidget {
   CreatePostFormPage({Key? key}) : super(key: key);
 
+  @override
+  State<CreatePostFormPage> createState() => _CreatePostFormPageState();
+}
+
+class _CreatePostFormPageState extends State<CreatePostFormPage> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _typeController = new TextEditingController();
-  final TextEditingController _titleController = new TextEditingController();
-  TextEditingController _discriptionController = new TextEditingController();
-  TextEditingController _priceController = new TextEditingController();
+
+  final TextEditingController _typeController = TextEditingController();
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _discriptionController = TextEditingController();
+  final TextEditingController _priceController = TextEditingController();
+  final TextEditingController _phonecontroller = TextEditingController();
+
+
+  ///Image Picker
+  File? selectedPhoto;
 
   @override
   Widget build(BuildContext context) {
+    void _uploadPhoto() async {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+          type: FileType.custom, allowedExtensions: ['jpg', 'jpeg', 'png']);
+      if (result != null) {
+        File file = File(result.files.single.path!);
+        setState(() {
+          selectedPhoto = file;
+        });
+      }
+    }
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -28,28 +50,33 @@ class CreatePostFormPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                ///Pick Image
+                if (selectedPhoto != null)
                 Container(
                   height: height*0.3,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20)
                   ),
                   child: Center(
-                    child: Image.network("https://cdn-media-1.freecodecamp.org/images/1*2H0HPHmFNs2t78Zog8kd9w.png",
-                      fit: BoxFit.contain,),
+                    child: Image.file(
+                      selectedPhoto!,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Center(
                     child: ElevatedButton(onPressed: (){
-                      Fluttertoast.showToast(
-                        msg: "Add photo will be here",
-                        backgroundColor: Colors.teal
-                      );
+                      _uploadPhoto();
                     },
-                        child: Text("Add your picture")),
+                        child: Text(
+                          selectedPhoto == null ? "Add photo" : "Change photo"
+                        )),
                   ),
                 ),
+
+                ///Select Type
                 TextFormField(
                   textCapitalization: TextCapitalization.sentences,
                   controller: _typeController,
@@ -59,10 +86,12 @@ class CreatePostFormPage extends StatelessWidget {
                     }
                     return null;
                   },
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       labelText: "Select Type"
                   ),
                 ),
+
+                ///Title
                 TextFormField(
                   textCapitalization: TextCapitalization.sentences,
                   controller: _titleController,
@@ -72,12 +101,17 @@ class CreatePostFormPage extends StatelessWidget {
                     }
                     return null;
                   },
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       labelText: "Title"
                   ),
                 ),
+
+                ///Description
                 TextFormField(
                   textCapitalization: TextCapitalization.sentences,
+                  maxLines: 5,
+                  maxLength: 1500,
+                  minLines: 1,
                   controller: _discriptionController,
                     validator: (value) {
                       if (value!.length < 10) {
@@ -85,10 +119,12 @@ class CreatePostFormPage extends StatelessWidget {
                       }
                       return null;
                     },
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       labelText: "Add description"
                   ),
                 ),
+
+                ///Price
                 TextFormField(
                   controller: _priceController,
                   validator: (val) {
@@ -98,28 +134,37 @@ class CreatePostFormPage extends StatelessWidget {
                     return null;
                   },
                   keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: "Price (Tk)"
                   ),
                 ),
 
-                ///Location select
+                ///Phone Number
+                IntlPhoneField(
+                  initialCountryCode: "BD",
+                  controller: _phonecontroller,
+                  decoration: InputDecoration(
+                  ),
+                ),
 
+                ///Location select
                 Center(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 15.0),
                     child: ElevatedButton(
                         onPressed: () {
                           if(_formKey.currentState!.validate()) {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => CreatePostPreviewPage(
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => ProductUIDesign1(
+                              imageFile: selectedPhoto,
                               type: _typeController.text,
                               title: _titleController.text,
+                              contact: _phonecontroller.text,
                               description: _discriptionController.text,
                               price: _priceController.text,
                             )));
                           }
                         },
-                        child: Text("Submit")),
+                        child: const Text("Submit")),
                   ),
                 )
               ],
