@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:masud_project/ViewPOST/ProductUI%20Design.dart';
+import '2. ProductDetailsUI.dart';
 
 class PostUiDesign extends StatelessWidget {
   const PostUiDesign({Key? key}) : super(key: key);
