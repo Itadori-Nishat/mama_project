@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:masud_project/ViewPOST/1. FirstLookPOSTUI.dart';
 import 'CreatePost/1. Select Location.dart';
+import 'ShowDialougeBoxUIDesign.dart';
 
 class DropDownButtonType extends StatefulWidget {
   @override
@@ -33,6 +34,12 @@ class _DropDownButtonTypeState extends State<DropDownButtonType> {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => FloatingDialougeBox()));
+          },
+              icon: Icon(Icons.format_align_center))
+        ],
         title: const Text('Home Page'),
       ),
       floatingActionButton: FloatingActionButton(
