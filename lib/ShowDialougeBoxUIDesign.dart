@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:masud_project/Intro%20slash%20screen%20ui/Final%20Intro.dart';
+import 'package:masud_project/Intro%20slash%20screen%20ui/Intro%201.dart';
 
 class FloatingDialougeBox extends StatefulWidget {
   const FloatingDialougeBox({Key? key}) : super(key: key);
@@ -208,6 +210,25 @@ class _FloatingDialougeBoxState extends State<FloatingDialougeBox> {
           );
         },
         child: const Icon(Icons.add),
+      ),
+      body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Intro_1()));
+            },
+                child: Text("Intro Page 1",style: TextStyle(
+            ),)),
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => FinalIntroHomePage()));
+            },
+                child: Text("Final Intro",style: TextStyle(
+                ),))
+            ,
+          ],
+        ),
       ),
     );
   }
